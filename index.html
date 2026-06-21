@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Academic Course Recommendation System</title>
+  <meta name="description" content="A dynamic website for academic history, interest, skill, experience, and future course recommendation.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#recommender" aria-label="Academic AI recommender home">
+        <span class="brand-mark" aria-hidden="true">AI</span>
+        <span>Academic Course Recommender</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#recommender">Recommender</a>
+        <a href="#framework">Framework</a>
+        <a href="#fairness">Fairness</a>
+        <a href="#implementation">Implementation</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section recommender-section" id="recommender" aria-labelledby="recommender-title">
+      <div class="container">
+        <div class="app-title">
+          <p class="eyebrow">Dynamic Student Profile Analyzer</p>
+          <h1 id="recommender-title">Find your interest area and future-ready course path.</h1>
+          <p>
+            Enter academic history, interests, skills, and experience. The system analyzes your profile locally and recommends courses, career tracks, skill gaps, and a practical roadmap.
+          </p>
+        </div>
+
+        <div class="profile-shell">
+          <form class="profile-panel" id="profileForm">
+            <div class="panel-header">
+              <h2>Student Details</h2>
+              <div class="header-actions">
+                <button class="icon-button" type="button" id="sampleProfile" aria-label="Load sample profile">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M3 12h18"></path></svg>
+                </button>
+                <button class="icon-button" type="button" id="resetProfile" aria-label="Reset profile">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7M3 4v6h6"></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <label>
+                <span>Name</span>
+                <input type="text" id="studentName" placeholder="Example: Arpit">
+              </label>
+              <label>
+                <span>Program / Degree</span>
+                <input type="text" id="program" placeholder="Example: B.Tech Computer Science">
+              </label>
+            </div>
+
+            <div class="field-grid">
+              <label>
+                <span>Current Stage</span>
+                <select id="currentYear">
+                  <option value="first">1st Year / Beginner</option>
+                  <option value="second">2nd Year</option>
+                  <option value="third" selected>3rd Year</option>
+                  <option value="final">Final Year</option>
+                  <option value="graduate">Graduate</option>
+                </select>
+              </label>
+              <label>
+                <span>Career Priority</span>
+                <select id="careerPriority">
+                  <option value="job" selected>Job Placement</option>
+                  <option value="higher">Higher Studies</option>
+                  <option value="startup">Startup / Product Building</option>
+                  <option value="research">Research</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="control">
+              <span>Academic Score / CGPA Strength</span>
+              <input type="range" min="40" max="100" value="76" id="academicScore">
+              <output for="academicScore" id="academicScoreValue">76%</output>
+            </label>
+
+            <div class="field-grid">
+              <label>
+                <span>Learning Mode</span>
+                <select id="learningMode">
+                  <option value="project" selected>Project-Based</option>
+                  <option value="guided">Guided Practice</option>
+                  <option value="self">Self-Paced</option>
+                  <option value="research">Research-Oriented</option>
+                </select>
+              </label>
+              <label>
+                <span>Target Timeline</span>
+                <select id="timeline">
+                  <option value="3">3 Months</option>
+                  <option value="6" selected>6 Months</option>
+                  <option value="12">12 Months</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="control">
+              <span>Weekly Learning Time</span>
+              <input type="range" min="2" max="30" value="10" id="weeklyHours">
+              <output for="weeklyHours" id="weeklyHoursValue">10 hrs</output>
+            </label>
+
+            <label class="text-field">
+              <span>Strong Subjects</span>
+              <textarea id="strongSubjects" rows="2" placeholder="Example: programming, mathematics, database, statistics"></textarea>
+            </label>
+
+            <label class="text-field">
+              <span>Weak / Improvement Subjects</span>
+              <textarea id="weakSubjects" rows="2" placeholder="Example: networking, communication, advanced math"></textarea>
+            </label>
+
+            <label class="text-field">
+              <span>Interests</span>
+              <textarea id="interestText" rows="3" placeholder="Example: AI, medicine, healthcare, data analysis, mobile apps, cybersecurity, cloud, UI design"></textarea>
+            </label>
+
+            <label class="text-field">
+              <span>Projects / Experience</span>
+              <textarea id="experienceText" rows="3" placeholder="Example: built a portfolio website, made a Python chatbot, completed internship"></textarea>
+            </label>
+
+            <fieldset class="skill-field">
+              <legend>Current Skills</legend>
+              <div class="check-grid">
+                <label><input type="checkbox" name="skills" value="python" checked><span>Python</span></label>
+                <label><input type="checkbox" name="skills" value="java"><span>Java</span></label>
+                <label><input type="checkbox" name="skills" value="sql" checked><span>SQL</span></label>
+                <label><input type="checkbox" name="skills" value="statistics"><span>Statistics</span></label>
+                <label><input type="checkbox" name="skills" value="ml"><span>ML Basics</span></label>
+                <label><input type="checkbox" name="skills" value="web"><span>HTML/CSS/JS</span></label>
+                <label><input type="checkbox" name="skills" value="cloud"><span>Cloud</span></label>
+                <label><input type="checkbox" name="skills" value="networking"><span>Networking</span></label>
+                <label><input type="checkbox" name="skills" value="biology"><span>Biology</span></label>
+                <label><input type="checkbox" name="skills" value="chemistry"><span>Chemistry</span></label>
+                <label><input type="checkbox" name="skills" value="healthcare"><span>Healthcare Basics</span></label>
+                <label><input type="checkbox" name="skills" value="research"><span>Research</span></label>
+                <label><input type="checkbox" name="skills" value="communication"><span>Communication</span></label>
+                <label><input type="checkbox" name="skills" value="design"><span>Design</span></label>
+              </div>
+            </fieldset>
+
+            <button class="button button-primary full-button" type="submit">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15l3-3 3 2 5-7"></path></svg>
+              Generate Recommendations
+            </button>
+          </form>
+
+          <section class="result-panel profile-results" aria-live="polite" aria-labelledby="result-title">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Personalized Output</p>
+                <h2 id="result-title">Recommendation Result</h2>
+              </div>
+              <span class="status-pill low" id="confidencePill">Ready</span>
+            </div>
+
+            <div class="profile-summary-row">
+              <div class="score-ring" id="confidenceRing" style="--score: 78%">
+                <span id="confidenceValue">78</span>
+                <small>Match Score</small>
+              </div>
+              <div class="result-summary">
+                <span class="profile-name" id="profileName">Student Profile</span>
+                <h3 id="primaryTrack">Data Analytics</h3>
+                <p id="profileSummary">Your profile shows strong alignment with analytical problem solving, Python/SQL practice, and project-based learning.</p>
+              </div>
+            </div>
+
+            <div class="insight-block">
+              <h3>Interest Match</h3>
+              <div class="track-list" id="trackList"></div>
+            </div>
+
+            <div class="insight-grid">
+              <section>
+                <h3>Recommended Courses</h3>
+                <div class="recommendation-list" id="recommendationList"></div>
+              </section>
+              <section>
+                <h3>Skill Gaps</h3>
+                <div class="gap-list" id="gapList"></div>
+              </section>
+            </div>
+
+            <div class="insight-grid">
+              <section>
+                <h3>Career Roles to Explore</h3>
+                <div class="role-list" id="roleList"></div>
+              </section>
+              <section>
+                <h3>Learning Roadmap</h3>
+                <div class="roadmap-list" id="roadmapList"></div>
+              </section>
+            </div>
+
+            <div class="insight-block">
+              <h3>Why This Was Recommended</h3>
+              <div class="factor-list" id="explainList"></div>
+            </div>
+
+            <p class="small-note">
+              This offline prototype uses transparent rule-based scoring. For a production system, connect it to live labor-market datasets and trained ML models.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section overview" aria-labelledby="overview-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Project Scope</p>
+          <h2 id="overview-title">A decision-support system for students, faculty, and advisors.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon accent-teal" aria-hidden="true">01</span>
+            <h3>Profile Analysis</h3>
+            <p>Reads academic history, skills, interests, experience, learning time, and career priority.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon accent-coral" aria-hidden="true">02</span>
+            <h3>Interest Discovery</h3>
+            <p>Maps profile signals to career tracks such as healthcare, AI, data, web, cloud, cybersecurity, and product.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon accent-gold" aria-hidden="true">03</span>
+            <h3>Course Recommendation</h3>
+            <p>Suggests course paths based on readiness, target role, skill gaps, and learning style.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon accent-blue" aria-hidden="true">04</span>
+            <h3>Explainable Output</h3>
+            <p>Shows why courses were recommended through transparent contribution factors.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section framework-band" id="framework" aria-labelledby="framework-title">
+      <div class="container framework-layout">
+        <div>
+          <div class="section-heading compact">
+            <p class="eyebrow">Framework</p>
+            <h2 id="framework-title">From student details to explainable, fair recommendations.</h2>
+          </div>
+          <div class="pipeline" aria-label="AI framework pipeline">
+            <div class="pipeline-step">
+              <span>1</span>
+              <h3>Profile Input</h3>
+              <p>Collect academic records, subjects, skills, interests, projects, and career goals.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>2</span>
+              <h3>Signal Scoring</h3>
+              <p>Convert profile text and selected skills into interpretable career-track scores.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>3</span>
+              <h3>XAI Layer</h3>
+              <p>Explain which skills, interests, and academic signals influenced the result.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>4</span>
+              <h3>Fairness Review</h3>
+              <p>Keep sensitive attributes outside the scoring path and show advisor review notes.</p>
+            </div>
+            <div class="pipeline-step">
+              <span>5</span>
+              <h3>Course Planner</h3>
+              <p>Rank courses, skill gaps, career roles, and next learning actions.</p>
+            </div>
+          </div>
+        </div>
+        <figure class="framework-visual">
+          <img src="assets/framework-dashboard.png" alt="Academic AI dashboard preview">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section fairness-section" id="fairness" aria-labelledby="fairness-title">
+      <div class="container fairness-layout">
+        <div>
+          <p class="eyebrow">Fairness and Explainability</p>
+          <h2 id="fairness-title">Built for responsible academic decision support.</h2>
+          <p>
+            The system is designed as an advisor-support tool, not an automatic judgment. It should explain recommendations, avoid sensitive attribute scoring, and allow students or advisors to review the final path.
+          </p>
+        </div>
+        <div class="metric-table" role="table" aria-label="Fairness and explainability checkpoints">
+          <div role="row">
+            <span role="cell">Sensitive attribute usage</span>
+            <strong role="cell">Excluded</strong>
+          </div>
+          <div role="row">
+            <span role="cell">Recommendation explanation</span>
+            <strong role="cell">Visible</strong>
+          </div>
+          <div role="row">
+            <span role="cell">Student review</span>
+            <strong role="cell">Required</strong>
+          </div>
+          <div role="row">
+            <span role="cell">Market data status</span>
+            <strong role="cell">Prototype labels</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section implementation-section" id="implementation" aria-labelledby="implementation-title">
+      <div class="container">
+        <div class="section-heading compact">
+          <p class="eyebrow">Implementation</p>
+          <h2 id="implementation-title">Suggested modules for a complete final-year project.</h2>
+        </div>
+        <div class="implementation-grid">
+          <article>
+            <h3>Frontend Layer</h3>
+            <p>Student profile form, result dashboard, course cards, explainability bars, and responsive layout.</p>
+          </article>
+          <article>
+            <h3>Recommendation Layer</h3>
+            <p>Hybrid rule-based and ML ranking using interests, prerequisites, skills, experience, and goals.</p>
+          </article>
+          <article>
+            <h3>AI Layer</h3>
+            <p>Classification for interest discovery, regression for readiness score, and explainability summaries.</p>
+          </article>
+          <article>
+            <h3>Data Layer</h3>
+            <p>Student profiles, course catalog, job-role mappings, skill taxonomy, academic history, and outcomes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <strong>Dynamic Academic Course Recommendation System</strong>
+        <p>Academic profile analysis, interest discovery, and future-ready course recommendation.</p>
+      </div>
+      <a class="button button-secondary" href="#recommender">Back to App</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
